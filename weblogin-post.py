@@ -1,7 +1,9 @@
-# coding=utf8  # !/usr/bin/env python
+# coding=utf8
+# !/usr/bin/env python
 
 import httplib
 import sys
+import time
 import re
 import socket
 import urllib
@@ -48,12 +50,24 @@ def PostIPMI(user,password, ipaddr):
                                     })
         params3 = urllib.urlencode({'mode': 'add',
                                     'ruleno': '3',
-                                    'ipinfo': '11.22.22.0/24',
+                                    'ipinfo': '115.231.111.0/24',
                                     'policy': 'ACCEPT',
                                     'time_stamp': 'Wed20Dec%2030%202015%2013%3A18%3A08%20GMT%2B0800'
                                     })
         params4 = urllib.urlencode({'mode': 'add',
                                     'ruleno': '4',
+                                    'ipinfo': '113.215.9.0/24',
+                                    'policy': 'ACCEPT',
+                                    'time_stamp': 'Wed20Dec%2030%202015%2013%3A18%3A08%20GMT%2B0800'
+                                    })
+        params4 = urllib.urlencode({'mode': 'add',
+                                    'ruleno': '5',
+                                    'ipinfo': '116.211.105.0/24',
+                                    'policy': 'ACCEPT',
+                                    'time_stamp': 'Wed20Dec%2030%202015%2013%3A18%3A08%20GMT%2B0800'
+                                    })
+        params4 = urllib.urlencode({'mode': 'add',
+                                    'ruleno': '6',
                                     'ipinfo': '0.0.0.0/0',
                                     'policy': 'DROP',
                                     'time_stamp': 'Wed20Dec%2030%202015%2013%3A18%3A08%20GMT%2B0800'
@@ -67,14 +81,32 @@ def PostIPMI(user,password, ipaddr):
                     'Cookie':  cookie +"; mainpage=configuration; subpage=config_ip_ctrl;langSetFlag=0; language=English;"
                     }
 
-        # send request
+        # send request1
         httpClient = httplib.HTTPConnection(ipaddr, 80, timeout=30)
         httpClient.request("POST", "/cgi/config_ip_ctrl.cgi", paramsdel1, headers1)
+        time.sleep(5)
+        # send request2
+        httpClient = httplib.HTTPConnection(ipaddr, 80, timeout=30)
         httpClient.request("POST", "/cgi/config_ip_ctrl.cgi", paramsdel1, headers1)
+        time.sleep(5)
+        # send request2
+        httpClient = httplib.HTTPConnection(ipaddr, 80, timeout=30)
         httpClient.request("POST", "/cgi/config_ip_ctrl.cgi", paramsdel1, headers1)
+        time.sleep(5)
+        # send request3
+        httpClient = httplib.HTTPConnection(ipaddr, 80, timeout=30)
         httpClient.request("POST", "/cgi/config_ip_ctrl.cgi", params1, headers1)
+        time.sleep(5)
+        # send request4
+        httpClient = httplib.HTTPConnection(ipaddr, 80, timeout=30)
         httpClient.request("POST", "/cgi/config_ip_ctrl.cgi", params2, headers1)
+        time.sleep(5)
+        # send request5
+        httpClient = httplib.HTTPConnection(ipaddr, 80, timeout=30)
         httpClient.request("POST", "/cgi/config_ip_ctrl.cgi", params3, headers1)
+        time.sleep(5)
+        # send request6
+        httpClient = httplib.HTTPConnection(ipaddr, 80, timeout=30)
         httpClient.request("POST", "/cgi/config_ip_ctrl.cgi", params4, headers1)
     except Exception, e:
         print e
